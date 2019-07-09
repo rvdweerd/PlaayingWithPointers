@@ -18,7 +18,7 @@ int Sum( int* pArr , int sizeInBytes)
 {
 	int size = sizeof(pArr);
 	int nElements = sizeInBytes / 4;
-
+	 
 	int sum = 0;
 	for (int i = 0; i < nElements; i++)
 	{
