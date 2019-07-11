@@ -1,9 +1,45 @@
 #include <iostream>
-void swap(int* pa, int* pb)
+
+void Swap(int* pa, int* pb)
 {
 	int temp = *pa;
 	*pa = *pb;
 	*pb = temp;
+}
+
+void Swap(int* pArr, int size)
+{
+	int  tempArr[4];
+	for (int i = 0; i < size; i++)
+	{
+		tempArr[size-1-i] = *(pArr + i);
+	}
+	for (int i = 0; i < size; i++)
+	{
+		*(pArr + i) = tempArr[i];
+	}
+
+}
+
+void Swap2(int* pArr, int size)
+{
+	//int  tempArr[4];
+	//for (int* i = pArr + size - 1; i >= pArr; i--)
+	for (int i=0;i<size/2;i++)
+	{
+		Swap( pArr+i , pArr+size-1-i);
+	}
+
+}
+
+
+void PrintArray(int* pArr, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << pArr[i] ;
+	}
+	std::cout << std::endl;
 }
 
 class Foo
@@ -43,9 +79,12 @@ int main()
 {
 	float f = 1.5f;
 	int k = int(f);
-
-
 	int arr[4] = { 1,2,3,4 };
+	PrintArray(arr,4);
+	Swap(&arr[0],4);
+	PrintArray(arr,4);
+	Swap2(&arr[0], 4);
+	PrintArray(arr, 4);
 	/*
 	int* pArr0 = &arr[0];
 	int* pArr1 = &arr[1];
