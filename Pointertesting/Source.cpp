@@ -29,8 +29,22 @@ int Sum( int* pArr , int sizeInBytes)
 	return sum;
 }
 
+int Sum2(int* p, int size)
+{
+	int s = 0;
+	for (int* e = p + size; p < e; p++)
+	{
+		s += *p;
+	}
+	return s;
+}
+
 int main()
 {
+	float f = 1.5f;
+	int k = int(f);
+
+
 	int arr[4] = { 1,2,3,4 };
 	/*
 	int* pArr0 = &arr[0];
@@ -40,10 +54,18 @@ int main()
 	pArr0[2] = 10;
 	pInt[1] = 3;
 	*/
+	int* p = &arr[0];
+	int* p2 = arr;
+	*(p + 3) = 99;
+	p[3] = 4;
+	p2++;
+	*p2 = 10;
+
+
 
 	int t1 = Sum(&arr[0], sizeof(arr));
-	int t2 = Sum(&arr[1], 3*4);
-	int t3 = Sum(arr, sizeof(arr));
+	int t2 = Sum2(&arr[0], 4);
+	//int t3 = Sum(arr, sizeof(arr));
 	//Sum(&arr, sizeof(arr)); //NO GOOD
 /*
 	int m = 7;
