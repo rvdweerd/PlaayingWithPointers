@@ -7,9 +7,9 @@ void Swap(int* pa, int* pb)
 	*pb = temp;
 }
 
-void Swap(int* pArr, int size)
+void Swap( int* const pArr, const int size)
 {
-	int  tempArr[4];
+	int  tempArr[5];
 	for (int i = 0; i < size; i++)
 	{
 		tempArr[size-1-i] = *(pArr + i);
@@ -21,7 +21,7 @@ void Swap(int* pArr, int size)
 
 }
 
-void Swap2(int* pArr, int size)
+void Swap2( int* const pArr, int size)
 {
 	//int  tempArr[4];
 	//for (int* i = pArr + size - 1; i >= pArr; i--)
@@ -30,6 +30,31 @@ void Swap2(int* pArr, int size)
 		Swap( pArr+i , pArr+size-1-i);
 	}
 
+}
+
+void Swap3(int* pl, int size)
+{
+	/*
+	int* pr = pl + size - 1;
+	while (pl < pr)
+	{
+		int temp = *pl;
+		*pl = *pr;
+		*pr = temp;
+		pl++;
+		pr--;
+	}
+	*/
+
+	for (int* pr = pl + size - 1; pl < pr; pl++ , pr--)
+	{
+		/*
+		int temp = *pl;
+		*pl = *pr;
+		*pr = temp;
+		*/
+		std::swap(*pl, *pr);
+	}
 }
 
 
@@ -50,9 +75,8 @@ public:
 	char fizz;
 };
 
-int Sum( int* pArr , int sizeInBytes)
+int Sum( const int* const pArr , int sizeInBytes)
 {
-	int size = sizeof(pArr);
 	int nElements = sizeInBytes / 4;
 	 
 	int sum = 0;
@@ -65,10 +89,10 @@ int Sum( int* pArr , int sizeInBytes)
 	return sum;
 }
 
-int Sum2(int* p, int size)
+int Sum2( const int* p, int size)
 {
 	int s = 0;
-	for (int* e = p + size; p < e; p++)
+	for (const int* const e = p + size; p < e; p++)
 	{
 		s += *p;
 	}
@@ -79,12 +103,15 @@ int main()
 {
 	float f = 1.5f;
 	int k = int(f);
-	int arr[4] = { 1,2,3,4 };
-	PrintArray(arr,4);
-	Swap(&arr[0],4);
-	PrintArray(arr,4);
-	Swap2(&arr[0], 4);
-	PrintArray(arr, 4);
+	static constexpr int arrSize = 5;
+	int arr[arrSize] = { 1,2,3,4, 5 };
+	PrintArray(arr,arrSize);
+	Swap(&arr[0],arrSize);
+	PrintArray(arr,arrSize);
+	Swap2(&arr[0], arrSize);
+	PrintArray(arr, arrSize);
+	Swap3(&arr[0], arrSize);
+	PrintArray(arr, arrSize);
 	/*
 	int* pArr0 = &arr[0];
 	int* pArr1 = &arr[1];
@@ -92,18 +119,20 @@ int main()
 	int* pInt = arr;
 	pArr0[2] = 10;
 	pInt[1] = 3;
-	*/
+	
 	int* p = &arr[0];
 	int* p2 = arr;
 	*(p + 3) = 99;
 	p[3] = 4;
 	p2++;
 	*p2 = 10;
-
+*/
 
 
 	int t1 = Sum(&arr[0], sizeof(arr));
-	int t2 = Sum2(&arr[0], 4);
+	std::cout << "Total1 = "<< t1<<std::endl;
+	int t2 = Sum2(&arr[0], arrSize);
+	std::cout << "Total2 = " << t2 << std::endl;
 	//int t3 = Sum(arr, sizeof(arr));
 	//Sum(&arr, sizeof(arr)); //NO GOOD
 /*
