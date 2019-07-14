@@ -57,7 +57,6 @@ void Swap3(int* pl, int size)
 	}
 }
 
-
 void PrintArray(int* pArr, int size)
 {
 	for (int i = 0; i < size; i++)
@@ -99,8 +98,68 @@ int Sum2( const int* p, int size)
 	return s;
 }
 
+class Bullshit {
+public:
+	void Wowee() 
+	{
+		z = 42069;
+	}
+public:
+	int x;
+	char arr[23];
+	int z;
+};
+
+void Funk(Bullshit* pb)
+{
+	// compile time indexing
+	pb[3].arr[7] = 40;
+
+	// runtime indexing
+	int val, i, j;
+	std::cin >> val >> i >> j;
+	pb[i].arr[j] = val;
+
+}
+
 int main()
 {
+	// pointer targeting and indirection
+	int n = 69;
+	int* pn = &n;
+	*pn += 420 - 69;
+
+	// reference vs. pointer
+	int& rn = n;
+	rn += 69 - 420;
+
+	// pointer arithmetic
+	pn++;
+	pn += 5;
+	
+	// array indexing
+	int arr[] = { 1,2,3,4,5,6,7 };
+	int* pa1 = arr;
+	int* pa2 = &arr[4];
+	*pa2 = 69;
+	pa1[4] = 420;
+
+	// pointer distance
+	int dist = pa2 - pa1;
+
+	// pointer to pointer
+	int** pp = &pn;
+	int*** ppp = &pp;
+	**ppp = arr + 6;
+	***ppp = 666;
+	
+	// complex indexing
+	Bullshit bs[13];
+	Funk(&bs[2]);
+
+
+
+	/*
 	float f = 1.5f;
 	int k = int(f);
 	static constexpr int arrSize = 5;
@@ -112,7 +171,7 @@ int main()
 	PrintArray(arr, arrSize);
 	Swap3(&arr[0], arrSize);
 	PrintArray(arr, arrSize);
-	/*
+	
 	int* pArr0 = &arr[0];
 	int* pArr1 = &arr[1];
 	
@@ -128,13 +187,14 @@ int main()
 	*p2 = 10;
 */
 
-
+/*
 	int t1 = Sum(&arr[0], sizeof(arr));
 	std::cout << "Total1 = "<< t1<<std::endl;
 	int t2 = Sum2(&arr[0], arrSize);
 	std::cout << "Total2 = " << t2 << std::endl;
 	//int t3 = Sum(arr, sizeof(arr));
 	//Sum(&arr, sizeof(arr)); //NO GOOD
+*/
 /*
 	int m = 7;
 	int n = 5;
